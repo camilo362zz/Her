@@ -1,0 +1,100 @@
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  font-family: "Anton", sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+
+.night {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotateZ(45deg);
+}
+
+.shooting_star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(-45deg, #eaff00, rgba(0, 0, 255, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px #eaff00);
+  animation: shooting 3000ms ease-in-out infinite;
+}
+
+.shooting_star::before, .shooting_star::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #5f91ff, rgba(0, 0, 255, 0));
+  transform: translateX(50%);
+  border-radius: 100%;
+  animation: shining 3000ms ease-in-out infinite;
+}
+
+@keyframes tail {
+  0% {
+    width: 0;
+    transform: translate(0, 0);
+  }
+  30% {
+    width: 100px; /* Longitud de la cola */
+    transform: translate(20px, 20px); /* Movimiento diagonal inicial */
+  }
+  100% {
+    width: 0;
+    transform: translate(200px, 200px); /* Movimiento diagonal final */
+  }
+}
+
+@keyframes shining {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 30px;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes shooting {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(200px, 200px); /* Movimiento diagonal de la estrella */
+  }
+}
+
+/* Posicionamiento de las estrellas */
+.shooting_star {
+  animation: tail 3000ms ease-in-out infinite,
+            shooting 3000ms ease-in-out infinite;
+}
+
+.shooting_star:nth-child(1) {
+  top: calc(0%); /* Inicia en la parte superior */
+  left: calc(50% - 150px); /* Cambia la posición horizontal */
+  animation-delay: 9871ms;
+}
+.shooting_star:nth-child(2) {
+  top: calc(0%);
+  left: calc(50% - 50px);
+  animation-delay: 9633ms;
+}
+.shooting_star:nth-child(3) {
+  top: calc(0%);
+  left: calc(50% + 100px);
+  animation-delay: 1100ms;
+}
+.shooting_star:nth-child(4) {
+  top: calc(0%);
+  left: calc(50% - 250px);
+  animation-delay: 491ms;
+}
